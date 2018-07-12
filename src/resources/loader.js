@@ -99,16 +99,17 @@ Object.assign(pc, function () {
          * @description Convert raw resource data into a resource instance. e.g. take 3D model format JSON and return a pc.Model.
          * @param {String} type The type of resource.
          * @param {*} data The raw resource data.
+         * @param {String} pseudo_url The url of resource (for p.decider)
          * @returns {*} The parsed resource data.
          */
-        open: function (type, data) {
+        open: function (type, data, pseudo_url) {
             var handler = this._handlers[type];
             if (!handler) {
                 console.warn("No resource handler found for: " + type);
                 return data;
             }
 
-            return handler.open(null, data);
+            return handler.open(pseudo_url, data);
 
         },
 
